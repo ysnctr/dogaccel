@@ -88,7 +88,11 @@ def extractFeat (accelData, n):
         x_y.columns = {'x/y'}
 
     # FFT components
+    # fft_x = pd.DataFrame(data = fftpack.rfft(accelData.x))
+    
     fft_x = pd.DataFrame(data = fftpack.rfft(accelData.x))
+    fft_x.flags['ALIGNED'] = True
+    
     fft_mean_x = pd.DataFrame(data = fft_x.mean(axis = 0))
     fft_mean_x.columns = {'fft_mean_x'}
     fft_std_x = pd.DataFrame(data = fft_x.std(axis = 0))
